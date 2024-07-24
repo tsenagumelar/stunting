@@ -3,6 +3,8 @@ import { ThemedView } from "@/components/ThemedView";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
+//nama, umur, berat, tinggi, kelamin
+
 export default function TabTwoScreen() {
   const colorScheme = useColorScheme();
   return (
