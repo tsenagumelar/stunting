@@ -18,12 +18,9 @@ export default function TabLayout() {
         headerShown: false,
         tabBarStyle: {
           backgroundColor: "white",
-          borderTopColor: "black",
           borderTopWidth: 1,
+          height: 70,
         },
-      }}
-      sceneContainerStyle={{
-        backgroundColor: "#fafeff",
       }}
     >
       {datas.BottomNav.map((menu, index) => (
@@ -32,24 +29,26 @@ export default function TabLayout() {
           name={menu.name}
           options={{
             title: "",
-            tabBarIcon: ({ color, focused }) => (
+            tabBarIcon: ({ focused }) => (
               <View
                 style={{
-                  height: 57.5,
-                  width: 57.5,
+                  height: 60,
+                  width: 60,
                   alignItems: "center",
                   justifyContent: "center",
-                  backgroundColor: focused ? "#fafeff" : "white",
+                  backgroundColor: focused ? "#e6f9ff" : "white",
                   borderColor: focused
                     ? Colors[colorScheme ?? "light"].tint
                     : "black",
-                  borderWidth: 1,
-                  borderRadius: 100,
+                  borderWidth: 0.5,
+                  borderRadius: 50,
+                  marginBottom: menu.name === "index" ? 30 : -15,
                 }}
               >
                 <TabBarIcon
+                  size={27.5}
+                  color={menu.color}
                   name={focused ? menu.icon1.value.name : menu.icon2.value.name}
-                  color={color}
                 />
               </View>
             ),

@@ -12,6 +12,7 @@ type interfaceMenu = {
   icon2: {
     value: { type: IconType.Ionicon; name: keyof typeof Ionicons.glyphMap };
   };
+  color: string;
 };
 
 const useHooks = () => {
@@ -31,6 +32,7 @@ const useHooks = () => {
         },
       },
       name: "stunting",
+      color: "#3AA0F7",
     },
     {
       title: "Nutrition",
@@ -47,6 +49,7 @@ const useHooks = () => {
         },
       },
       name: "nutrition",
+      color: "#F5D399",
     },
     {
       title: "Education",
@@ -63,6 +66,7 @@ const useHooks = () => {
         },
       },
       name: "education",
+      color: "#899F9C",
     },
     {
       title: "FAQ",
@@ -79,26 +83,11 @@ const useHooks = () => {
         },
       },
       name: "faq",
+      color: "#B3C680",
     },
   ];
 
   const BottomNav: interfaceMenu[] = [
-    {
-      title: "Home",
-      icon1: {
-        value: {
-          type: IconType.Ionicon,
-          name: "storefront",
-        },
-      },
-      icon2: {
-        value: {
-          type: IconType.Ionicon,
-          name: "storefront-outline",
-        },
-      },
-      name: "index",
-    },
     {
       title: "Stunting",
       icon1: {
@@ -114,6 +103,7 @@ const useHooks = () => {
         },
       },
       name: "stunting",
+      color: "#3AA0F7",
     },
     {
       title: "Nutrition",
@@ -130,6 +120,24 @@ const useHooks = () => {
         },
       },
       name: "nutrition",
+      color: "#F5D399",
+    },
+    {
+      title: "Home",
+      icon1: {
+        value: {
+          type: IconType.Ionicon,
+          name: "storefront",
+        },
+      },
+      icon2: {
+        value: {
+          type: IconType.Ionicon,
+          name: "storefront-outline",
+        },
+      },
+      name: "index",
+      color: "#0a7ea4",
     },
     {
       title: "Education",
@@ -146,6 +154,24 @@ const useHooks = () => {
         },
       },
       name: "education",
+      color: "#899F9C",
+    },
+    {
+      title: "FAQ",
+      icon1: {
+        value: {
+          type: IconType.Ionicon,
+          name: "help-circle",
+        },
+      },
+      icon2: {
+        value: {
+          type: IconType.Ionicon,
+          name: "help-circle-outline",
+        },
+      },
+      name: "faq",
+      color: "#B3C680",
     },
   ];
 

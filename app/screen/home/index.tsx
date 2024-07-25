@@ -1,10 +1,14 @@
+import React from "react";
 import useHooks from "@/app/utils/hooks";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
-import { Colors } from "@/constants/Colors";
+import { Dimensions, Image, ScrollView, Text, View } from "react-native";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { Link } from "expo-router";
+
+import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
+import { useRef } from "react";
+
 export default function HomeScreen() {
   const colorScheme = useColorScheme();
   const { datas } = useHooks();
@@ -17,9 +21,9 @@ export default function HomeScreen() {
           width: "100%",
           display: "flex",
           flexDirection: "row",
-          justifyContent: "flex-start",
           alignItems: "center",
           paddingHorizontal: 10,
+          justifyContent: "flex-start",
         }}
       >
         <StatusBar style="auto" translucent={false} />
@@ -29,24 +33,44 @@ export default function HomeScreen() {
             height: 65,
             borderRadius: 50,
             marginRight: 15,
-            borderWidth: 1,
-            borderColor: Colors[colorScheme ?? "light"].tint,
           }}
-        />
+        >
+          <Image
+            style={{ width: 65, height: 65, borderRadius: 50 }}
+            source={{
+              uri: "https://cdn-icons-png.flaticon.com/512/219/219988.png",
+            }}
+          />
+        </View>
         <View
           style={{
             height: 50,
             width: "auto",
           }}
         >
-          <Text style={{ fontWeight: "bold", fontSize: 20 }}>
-            Hello Administrator
-          </Text>
+          <Text style={{ fontWeight: "bold", fontSize: 20 }}>Hello Admin</Text>
           <Text style={{ fontStyle: "italic" }}>How do you feel today?</Text>
         </View>
       </View>
     );
   };
+  const ref = useRef<ICarouselInstance>(null);
+
+  const colors = [
+    "#3AA0F7",
+    "#F5D399",
+    "#899F9C",
+    "#B3C680",
+    "#5C6265",
+    "#26292E",
+  ];
+
+  const images = [
+    "https://jpg-indonesia.net/wp-content/uploads/2020/03/banner-indoHCF.jpeg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLLM90wKWW5eFB2P8ihg5WEfIyKQH8Ui4gKQ&s",
+    "https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/infomase/2024/02/IMG_20240221_164110.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1fdYuJHqVUXA0HSvxPMOZxHSZz462px0ypQ&s",
+  ];
 
   const Banner = () => {
     return (
@@ -60,21 +84,56 @@ export default function HomeScreen() {
           paddingHorizontal: 10,
         }}
       >
-        <View
+        <Carousel
+          ref={ref}
+          height={Dimensions.get("screen").height * 0.225} // Add the height property
+          width={Dimensions.get("screen").width} // Add the width property
           style={{
-            height: "90%",
-            width: "100%",
-            borderRadius: 30,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            borderWidth: 0.5,
-            backgroundColor: "white",
-            borderColor: Colors[colorScheme ?? "light"].tint,
+            width: Dimensions.get("screen").width,
           }}
-        >
-          <Text style={{ fontSize: 20, color: "black" }}>Banner</Text>
-        </View>
+          loop
+          pagingEnabled={true}
+          snapEnabled={true}
+          autoPlay={true}
+          autoPlayInterval={3000}
+          mode="parallax"
+          modeConfig={{
+            parallaxScrollingScale: 1,
+            parallaxScrollingOffset: 0,
+          }}
+          data={images}
+          renderItem={({ index }) => (
+            <View
+              style={{
+                height: "90%",
+                width: "100%",
+                // borderRadius: 20,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5,
+              }}
+            >
+              <Image
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  resizeMode: "stretch",
+                }}
+                source={{
+                  uri: images[index],
+                }}
+              />
+            </View>
+          )}
+        />
       </View>
     );
   };
@@ -84,27 +143,28 @@ export default function HomeScreen() {
       <View
         style={{
           height: "25%",
-          paddingHorizontal: 10,
           width: "100%",
           display: "flex",
+          paddingHorizontal: 15,
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <View
           style={{
-            height: "80%",
+            height: "55%",
             marginTop: 10,
             width: "100%",
             display: "flex",
-            borderWidth: 0.5,
-            backgroundColor: "white",
             borderRadius: 20,
             alignItems: "center",
             flexDirection: "row",
             justifyContent: "space-around",
-            borderColor: Colors[colorScheme ?? "light"].tint,
+            borderColor: "black",
+            backgroundColor: "#e6f7ff",
           }}
         >
-          {datas.Menus.map((item) => (
+          {datas.Menus.map((item, index) => (
             <Link href={`/${item.name}`} key={item.name}>
               <View
                 style={{
@@ -118,20 +178,18 @@ export default function HomeScreen() {
                 <View
                   key={item.name}
                   style={{
-                    width: 60,
-                    height: 60,
-                    borderWidth: 1,
+                    width: 50,
+                    height: 50,
                     display: "flex",
-                    marginBottom: 5,
                     borderRadius: 50,
                     alignItems: "center",
                     justifyContent: "center",
-                    borderColor: Colors[colorScheme ?? "light"].tint,
+                    backgroundColor: "white",
                   }}
                 >
                   <TabBarIcon
                     name={item.icon1.value.name}
-                    color={Colors[colorScheme ?? "light"].tint}
+                    color={colors[index]}
                   />
                 </View>
                 <Text style={{ fontWeight: "bold" }}>{item.title}</Text>
@@ -147,45 +205,74 @@ export default function HomeScreen() {
     return (
       <View
         style={{
-          height: "40%",
           width: "100%",
+          height: "37.5%",
           display: "flex",
           alignItems: "center",
-          paddingHorizontal: 10,
+          justifyContent: "center",
         }}
       >
-        <View
+        <ScrollView
           style={{
-            height: "40%",
-            width: "100%",
-            borderRadius: 20,
-            display: "flex",
-            borderWidth: 0.5,
-            backgroundColor: "white",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: 10,
-            borderColor: Colors[colorScheme ?? "light"].tint,
+            width: "90%",
+            height: "100%",
           }}
         >
-          <Text style={{ fontSize: 20, color: "black" }}>Article</Text>
-        </View>
-        <View
-          style={{
-            height: "40%",
-            width: "100%",
-            borderRadius: 20,
-            display: "flex",
-            borderWidth: 0.5,
-            backgroundColor: "white",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: 10,
-            borderColor: Colors[colorScheme ?? "light"].tint,
-          }}
-        >
-          <Text style={{ fontSize: 20, color: "black" }}>Article</Text>
-        </View>
+          {images.map((item, index) => (
+            <View
+              key={index}
+              style={{
+                marginBottom: 15,
+                height: 125,
+                width: "100%",
+                padding: 7.5,
+                display: "flex",
+                backgroundColor: "#f2f2f2",
+                alignItems: "center",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 1.84,
+                elevation: 2,
+                borderRadius: 20,
+              }}
+            >
+              <Image
+                style={{
+                  width: "35%",
+                  height: "100%",
+                  borderRadius: 20,
+                }}
+                source={{
+                  uri: item,
+                }}
+              />
+              <View
+                style={{
+                  width: "65%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "flex-start",
+                  paddingHorizontal: 10,
+                }}
+              >
+                <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+                  Stunting
+                </Text>
+                <Text style={{ fontStyle: "italic", fontSize: 12 }}>
+                  Hambatan pertumbuhan, bantutan pertumbuhan, atau tengkes
+                  adalah keadaan berhentinya pertumbuhan pada anak.
+                </Text>
+                <Text></Text>
+              </View>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     );
   };
@@ -195,6 +282,7 @@ export default function HomeScreen() {
       style={{
         height: "100%",
         width: "100%",
+        backgroundColor: "white",
       }}
     >
       <Header />
