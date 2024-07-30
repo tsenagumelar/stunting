@@ -8,6 +8,7 @@ import { Link } from "expo-router";
 
 import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
 import { useRef } from "react";
+import { Colors } from "@/constants/Colors";
 
 export default function HomeScreen() {
   const colorScheme = useColorScheme();
@@ -98,8 +99,8 @@ export default function HomeScreen() {
           autoPlayInterval={3000}
           mode="parallax"
           modeConfig={{
-            parallaxScrollingScale: 1,
-            parallaxScrollingOffset: 0,
+            parallaxScrollingScale: 0.9,
+            parallaxScrollingOffset: 52.5,
           }}
           data={images}
           renderItem={({ index }) => (
@@ -126,6 +127,8 @@ export default function HomeScreen() {
                   width: "100%",
                   height: "100%",
                   resizeMode: "stretch",
+                  borderWidth: 0.5,
+                  borderColor: Colors.light.tint,
                 }}
                 source={{
                   uri: images[index],
@@ -160,7 +163,8 @@ export default function HomeScreen() {
             alignItems: "center",
             flexDirection: "row",
             justifyContent: "space-around",
-            borderColor: "black",
+            borderWidth: 0.5,
+            borderColor: Colors.light.tint,
             backgroundColor: "#e6f7ff",
           }}
         >
@@ -240,6 +244,8 @@ export default function HomeScreen() {
                 shadowRadius: 1.84,
                 elevation: 2,
                 borderRadius: 20,
+                borderWidth: 0.5,
+                borderColor: Colors.light.tint,
               }}
             >
               <Image
@@ -282,7 +288,7 @@ export default function HomeScreen() {
       style={{
         height: "100%",
         width: "100%",
-        backgroundColor: "white",
+        backgroundColor: "#fff",
       }}
     >
       <Header />

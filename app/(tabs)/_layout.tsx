@@ -17,9 +17,13 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: "white",
+          backgroundColor: Colors[colorScheme ?? "light"].tint,
           borderTopWidth: 1,
           height: 70,
+        },
+        headerTitleStyle: {
+          fontSize: 20,
+          color: "black",
         },
       }}
     >
@@ -36,18 +40,20 @@ export default function TabLayout() {
                   width: 60,
                   alignItems: "center",
                   justifyContent: "center",
-                  backgroundColor: focused ? "#e6f9ff" : "white",
-                  borderColor: focused
+                  backgroundColor: focused
                     ? Colors[colorScheme ?? "light"].tint
-                    : "black",
-                  borderWidth: 0.5,
+                    : "white",
+                  borderColor: focused
+                    ? "white"
+                    : Colors[colorScheme ?? "light"].tint,
+                  borderWidth: 1,
                   borderRadius: 50,
                   marginBottom: menu.name === "index" ? 30 : -15,
                 }}
               >
                 <TabBarIcon
                   size={27.5}
-                  color={menu.color}
+                  color={focused ? "white" : menu.color}
                   name={focused ? menu.icon1.value.name : menu.icon2.value.name}
                 />
               </View>
