@@ -1,11 +1,12 @@
 import { Button, Text, TouchableOpacity, View } from "react-native";
 import { ThemedView } from "@/components/ThemedView";
-import { Colors } from "@/constants/Colors";
+import { BaseColors, Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useState } from "react";
 import React from "react";
 import Stunting from "./stunting";
 import History from "./history";
+import Header from "@/app/component/header";
 
 //nama, umur, berat, tinggi, kelamin
 
@@ -14,7 +15,8 @@ export default function Default() {
   const [tab, setTab] = useState("stunting");
 
   return (
-    <ThemedView style={{ flex: 1 }}>
+    <ThemedView style={{ flex: 1, padding: 10 }}>
+      <Header title="STUNTING" />
       <View
         style={{
           height: 50,
@@ -39,9 +41,7 @@ export default function Default() {
             borderBottomLeftRadius: 100,
             borderRightWidth: 0.5,
             backgroundColor:
-              tab === "stunting"
-                ? Colors[colorScheme ?? "light"].tint
-                : "white",
+              tab === "stunting" ? BaseColors.light.primary : "white",
           }}
           onPress={() => setTab("stunting")}
         >
@@ -67,7 +67,7 @@ export default function Default() {
             borderBottomRightRadius: 100,
             borderLeftWidth: 0.5,
             backgroundColor:
-              tab === "history" ? Colors[colorScheme ?? "light"].tint : "white",
+              tab === "history" ? BaseColors.light.primary : "white",
           }}
           onPress={() => setTab("history")}
         >

@@ -1,14 +1,14 @@
 import React from "react";
+import { useRef } from "react";
 import useHooks from "@/app/utils/hooks";
-import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { StatusBar } from "expo-status-bar";
 import { Dimensions, Image, ScrollView, Text, View } from "react-native";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { Link } from "expo-router";
-
 import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
-import { useRef } from "react";
-import { Colors } from "@/constants/Colors";
+
+import { BaseColors, Colors } from "@/constants/Colors";
+import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 
 export default function HomeScreen() {
   const colorScheme = useColorScheme();
@@ -37,7 +37,13 @@ export default function HomeScreen() {
           }}
         >
           <Image
-            style={{ width: 65, height: 65, borderRadius: 50 }}
+            style={{
+              width: 65,
+              height: 65,
+              borderWidth: 1,
+              borderRadius: 50,
+              borderColor: BaseColors.light.border,
+            }}
             source={{
               uri: "https://cdn-icons-png.flaticon.com/512/219/219988.png",
             }}
@@ -56,15 +62,6 @@ export default function HomeScreen() {
     );
   };
   const ref = useRef<ICarouselInstance>(null);
-
-  const colors = [
-    "#3AA0F7",
-    "#F5D399",
-    "#899F9C",
-    "#B3C680",
-    "#5C6265",
-    "#26292E",
-  ];
 
   const images = [
     "https://jpg-indonesia.net/wp-content/uploads/2020/03/banner-indoHCF.jpeg",
@@ -108,7 +105,6 @@ export default function HomeScreen() {
               style={{
                 height: "90%",
                 width: "100%",
-                // borderRadius: 20,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -126,9 +122,9 @@ export default function HomeScreen() {
                 style={{
                   width: "100%",
                   height: "100%",
+                  borderWidth: 0.25,
                   resizeMode: "stretch",
-                  borderWidth: 0.5,
-                  borderColor: Colors.light.tint,
+                  borderColor: BaseColors.light.primary,
                 }}
                 source={{
                   uri: images[index],
@@ -163,9 +159,9 @@ export default function HomeScreen() {
             alignItems: "center",
             flexDirection: "row",
             justifyContent: "space-around",
-            borderWidth: 0.5,
-            borderColor: Colors.light.tint,
-            backgroundColor: "#e6f7ff",
+            borderWidth: 0.25,
+            borderColor: BaseColors.light.primary,
+            backgroundColor: BaseColors.light.soft,
           }}
         >
           {datas.Menus.map((item, index) => (
@@ -188,13 +184,10 @@ export default function HomeScreen() {
                     borderRadius: 50,
                     alignItems: "center",
                     justifyContent: "center",
-                    backgroundColor: "white",
+                    backgroundColor: BaseColors.light.background,
                   }}
                 >
-                  <TabBarIcon
-                    name={item.icon1.value.name}
-                    color={colors[index]}
-                  />
+                  <TabBarIcon name={item.icon1.value.name} color={item.color} />
                 </View>
                 <Text style={{ fontWeight: "bold" }}>{item.title}</Text>
               </View>
@@ -231,18 +224,10 @@ export default function HomeScreen() {
                 width: "100%",
                 padding: 7.5,
                 display: "flex",
-                backgroundColor: "#f2f2f2",
+                backgroundColor: BaseColors.light.backSoft,
                 alignItems: "center",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                shadowColor: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 1.84,
-                elevation: 2,
                 borderRadius: 20,
                 borderWidth: 0.5,
                 borderColor: Colors.light.tint,
@@ -288,7 +273,7 @@ export default function HomeScreen() {
       style={{
         height: "100%",
         width: "100%",
-        backgroundColor: "#fff",
+        backgroundColor: BaseColors.light.background,
       }}
     >
       <Header />

@@ -1,3 +1,5 @@
+import Header from "@/app/component/header";
+import { BaseColors } from "@/constants/Colors";
 import React from "react";
 import { Dimensions, Image, ScrollView, Text, View } from "react-native";
 
@@ -106,44 +108,46 @@ export default function EducationScreen() {
       style={{
         height: "100%",
         width: "100%",
+        padding: 10,
       }}
     >
+      <Header title="EDUCATION" />
       <ScrollView>
         <View
           style={{
             display: "flex",
-            flexDirection: "row",
             flexWrap: "wrap",
+            flexDirection: "row",
             justifyContent: "center",
           }}
         >
           <View
             style={{
-              justifyContent: "center",
               height: "100%",
               width: "100%",
-              flexDirection: "row",
               flexWrap: "wrap",
+              flexDirection: "row",
+              justifyContent: "center",
             }}
           >
             {data.map((item, index) => (
               <View
                 key={index}
                 style={{
-                  width: Dimensions.get("screen").width * 0.3,
+                  width: Dimensions.get("screen").width * 0.29,
                   height: Dimensions.get("screen").width * 0.5,
                   display: "flex",
                   alignItems: "center",
                   margin: 5,
                   marginBottom: 20,
                   borderWidth: 1,
-                  borderColor: "#0a7ea4",
-                  backgroundColor: "#0a7ea4",
+                  borderColor: BaseColors.light.tertiary,
+                  backgroundColor: BaseColors.light.tertiary,
                 }}
               >
                 <Image
                   style={{
-                    width: Dimensions.get("screen").width * 0.295,
+                    width: Dimensions.get("screen").width * 0.285,
                     height: Dimensions.get("screen").width * 0.4,
                     resizeMode: "cover",
                     marginBottom: 10,

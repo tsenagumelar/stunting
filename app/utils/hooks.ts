@@ -49,7 +49,7 @@ const useHooks = () => {
         },
       },
       name: "nutrition",
-      color: "#F5D399",
+      color: "#009900",
     },
     {
       title: "Education",
@@ -83,7 +83,7 @@ const useHooks = () => {
         },
       },
       name: "faq",
-      color: "#B3C680",
+      color: "#cc0000",
     },
   ];
 
@@ -120,7 +120,7 @@ const useHooks = () => {
         },
       },
       name: "nutrition",
-      color: "#F5D399",
+      color: "#009900",
     },
     {
       title: "Home",
@@ -137,7 +137,7 @@ const useHooks = () => {
         },
       },
       name: "index",
-      color: "#0a7ea4",
+      color: "#993300",
     },
     {
       title: "Education",
@@ -171,7 +171,7 @@ const useHooks = () => {
         },
       },
       name: "faq",
-      color: "#B3C680",
+      color: "#cc0000",
     },
   ];
 
